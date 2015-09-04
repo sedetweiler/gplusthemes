@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"encoding/xml"
 	"io/ioutil"
+	"strings"
 )
 
 type ThemeList struct {
@@ -15,14 +16,24 @@ type ThemeList struct {
 type Theme struct {
 	XMLName xml.Name `xml:"Theme"`
 	Name string `xml:"Name,attr"`
-	Page int64 `xml:"Page,attr"`
+	Page string `xml:"Page,attr"`
 	Tag string `xml:"Tag,attr"`
 	Day string `xml:"Day,attr"`
 }
 
 // This function produces each theme as a simple <li /> wrapper
 func (t Theme) String() string {
-	return fmt.Sprintf("<li>%s, Tag:#%s - %s</li>", t.Name, t.Tag, t.Day)
+
+	page := strings.Trim(t.Page," ")
+	s := ""
+
+	if len(page) > 0 {
+		s = fmt.Sprintf("<li><a href=\"https://plus.google.com/+%s\" target=\"_blank\">%s</a><p>#%s  : + curated by ... </p></li>", page, t.Name, t.Tag)
+	} else {
+		s = fmt.Sprintf("<li>%s<p>#%s  : + curated by ... </p></li>", t.Name, t.Tag)
+	}
+
+	return s
 }
 
 func main() {
