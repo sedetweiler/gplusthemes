@@ -3,6 +3,26 @@
 	{
 		"selected_items":
 		[
+			[
+				"open",
+				"openXML"
+			],
+			[
+				"xml",
+				"xmlFile"
+			],
+			[
+				"Theme",
+				"ThemeList"
+			],
+			[
+				"Th",
+				"ThemeList"
+			],
+			[
+				"s",
+				"s"
+			]
 		]
 	},
 	"buffers":
@@ -11,15 +31,23 @@
 			"file": "gplsuthemes.go",
 			"settings":
 			{
-				"buffer_size": 458,
+				"buffer_size": 801,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "models.go",
+			"file": "db/themedata.xml",
 			"settings":
 			{
-				"buffer_size": 306,
+				"buffer_size": 43340,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "templates/listing.html",
+			"settings":
+			{
+				"buffer_size": 1315,
 				"line_ending": "Windows"
 			}
 		}
@@ -40,7 +68,7 @@
 	},
 	"console":
 	{
-		"height": 0.0,
+		"height": 146.0,
 		"history":
 		[
 		]
@@ -56,6 +84,13 @@
 	},
 	"file_history":
 	[
+		"/C/Users/scott/Projects/Go/src/github.com/sedetweiler/gplusthemes/gplsuthemes.go",
+		"/C/Users/scott/Projects/Go/src/github.com/sedetweiler/gplusthemes/templates/css/style.css",
+		"/C/Users/scott/Projects/Go/src/github.com/sedetweiler/gplusthemes/structs.go",
+		"/C/Users/scott/AppData/Roaming/Sublime Text 3/Packages/User/Go.sublime-settings",
+		"/C/Users/scott/Projects/Go/src/github.com/sedetweiler/gplusthemes/model/model.go",
+		"/C/Users/scott/Projects/Go/src/github.com/sedetweiler/gplusthemes/models/models.go",
+		"/C/Users/scott/Projects/Go/src/github.com/sedetweiler/gplusthemes/models.go",
 		"/C/Projects/Go/src/gplusthemes/tsql.go"
 	],
 	"find":
@@ -91,7 +126,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -100,7 +135,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 458,
+						"buffer_size": 801,
 						"regions":
 						{
 						},
@@ -120,35 +155,65 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "models.go",
+					"file": "db/themedata.xml",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 306,
+						"buffer_size": 43340,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								43224,
+								43224
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Go/Go.tmLanguage"
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 20720.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "templates/listing.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1315,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1134,
+								1134
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 162.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -227,8 +292,8 @@
 	"settings":
 	{
 	},
-	"show_minimap": true,
-	"show_open_files": false,
+	"show_minimap": false,
+	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 150.0,

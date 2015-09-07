@@ -2,15 +2,16 @@ package main
 
 import (
 	"os"
-	"fmt"
 	"encoding/xml"
 	"io/ioutil"
-	"strings"
+	"net/http"
+	"html/template"
+	"fmt"
 )
 
 type ThemeList struct {
-  XMLName xml.Name `xml:"Themes"`
-  Themes []Theme `xml:"Theme"`
+	XMLName xml.Name `xml:"Themes"`
+	Themes []Theme `xml:"Theme"`
 }
 
 type Theme struct {
@@ -21,36 +22,34 @@ type Theme struct {
 	Day string `xml:"Day,attr"`
 }
 
-// This function produces each theme as a simple <li /> wrapper
-func (t Theme) String() string {
-
-	page := strings.Trim(t.Page," ")
-	s := ""
-
-	if len(page) > 0 {
-		s = fmt.Sprintf("<li><a href=\"https://plus.google.com/+%s\" target=\"_blank\">%s</a><p>#%s  : + curated by ... </p></li>", page, t.Name, t.Tag)
-	} else {
-		s = fmt.Sprintf("<li>%s<p>#%s  : + curated by ... </p></li>", t.Name, t.Tag)
-	}
-
-	return s
+func handler(w http.ResponseWriter, r *http.Request) {
+    template,_ := template.ParseFiles("templates/listing.html")
+    themedata := openXML("db/themedata.xml")
+    template.Execute(w, themedata)
 }
 
-func main() {
-	xmlFile, err := os.Open("db/themedata.xml")
+// Fetch the current XML document and return the Theme[]
+func openXML(filename string) ThemeList {
+
+	xmlFile, err := os.Open(filename)
 	if err != nil {
-		fmt.Println("Error opening file:", err)
-		return
+	    fmt.Println("Error opening file:", err)
 	}
 	defer xmlFile.Close()
-	
+
 	XMLdata, _ := ioutil.ReadAll(xmlFile)
 	
-	var q ThemeList
-	xml.Unmarshal(XMLdata, &q)
-	
-	for _, t := range q.Themes {
-		fmt.Printf("%s\n ", t.String())
-	}
+	var t ThemeList
+
+	xml.Unmarshal(XMLdata, &t)
+
+	return t
+}
+
+
+func main() {
+
+	http.HandleFunc("/", handler)
+    http.ListenAndServe(":8080", nil)
 
 }
