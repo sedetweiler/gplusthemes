@@ -6,34 +6,75 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="http://gmpg.org/xfn/11" rel="profile">
-
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
-	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="icon" href="/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
 
     <title>Google Plus Daily Photography Themes</title>
+
+    <style>
+        .header {
+            background-color: rgb(111, 84, 153);
+            background-image: linear-gradient(rgb(86, 61, 124) 0px, rgb(111, 84, 153) 100%);
+            background-repeat: repeat-x;
+            box-sizing: border-box;
+            color: rgb(205, 191, 227);
+            display: block;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 24px;
+            height: 256px;
+            line-height: 34.2857px;
+            margin-bottom: 40px;
+            padding-bottom: 60px;
+            padding-left: 50px;
+            padding-right: 0px;
+            padding-top: 60px;
+            position: relative;
+        }
+
+        .header H1 {
+            box-sizing: border-box;
+            color: rgb(255, 255, 255);
+            display: block;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 60px;
+            font-weight: 500;
+            height: 60px;
+            line-height: 60px;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            text-align: left;
+        }
+
+    </style>
+
 </head>
 
 <body>
 
-<div class="masthead">
-      <div class="container">
-        <h1>Google+ Photography Themes</h1>
+<div class="header">
+      <div class="masthead">
+        <h1>
+            <img src="/images/url.png" width="50" height="50">
+            Google+ Photo Themes
+        </h1>
         <p class="lead">A brutally simplistic and highly usable list of themes to help inspire, motivate, and grow your following.</p>
       </div>
-    </div>
-
-	{{range .Themes}}
-		<li>{{.Name }} - {{.Tag}}</li>
-	{{end}}
-
+</div>
+<div class="body">
+    <table>
+        {{range .Themes}}
+        <tr>
+            <td style="visibility: hidden">{{.Day }}</td>
+            <td>{{.Page }}</td>
+            <td>{{.Name}}</td>
+            <td>{{.Tag}}</td>
+        </tr>
+        {{end}}
+    </table>
+</div>
 </body>
 </html>
