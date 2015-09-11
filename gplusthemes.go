@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"html/template"
 	"fmt"
+	"log"
 )
 
 type ThemeList struct {
@@ -20,12 +21,6 @@ type Theme struct {
 	Page    string `xml:"Page,attr"`
 	Tag     string `xml:"Tag,attr"`
 	Day     string `xml:"Day,attr"`
-}
-
-func handler(w http.ResponseWriter, r *http.Request) {
-	template, _ := template.ParseFiles("templates/listing.html")
-	themedata := openXML("db/themedata.xml")
-	template.Execute(w, &themedata)
 }
 
 // Fetch the current XML document and return the Theme[]
@@ -44,19 +39,21 @@ func openXML(filename string) ThemeList {
 	return t
 }
 
-func serveSingle(pattern string, filename string) {
-	http.HandleFunc(pattern, func(w http.ResponseWriter, r *http.Request) {
-			http.ServeFile(w, r, filename)
-		})
+func handler(w http.ResponseWriter, r *http.Request) {
+	template, _ := template.ParseFiles("templates/listing.html")
+	themedata := openXML("db/themedata.xml")
+	template.Execute(w, &themedata)
 }
 
 func main() {
 
+	fs := http.FileServer(http.Dir("static"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
+
 	http.HandleFunc("/", handler)
 
-	serveSingle("/style.css", "./templates/style.css")
-	serveSingle("/images/url.png", "./templates/images/url.png")
-
+	log.Println("Listening...")
 	http.ListenAndServe(":8080", nil)
-
 }
+
+
