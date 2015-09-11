@@ -69,8 +69,12 @@
         {{range .Themes}}
         <tr>
             <td style="visibility: hidden">{{.Day }}</td>
-            <td>{{.Page }}</td>
+            {{if ne .Page ""}}
+            <td><a target="_blank" title="Google+ theme page for {{.Name}}" href="https://plus.google.com/{{.Page }}">{{.Name}}</a>
+            </td>
+            {{else}}
             <td>{{.Name}}</td>
+            {{end}}
             <td>{{.Tag}}</td>
         </tr>
         {{end}}
